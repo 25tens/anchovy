@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html >
+{% load static from staticfiles %}
+
+<html>
+    <head>
+    <meta charset="utf-8">	
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>바다의 왕자 - 태화상회</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+   <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+  
+
+    <style>
+		.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.row > [class*='col-'] {
+	 display: flex;
+	 flex-direction: column;
+}
+		.body{
+			margin: 0;
+			padding: 0;
+			
+		}
+		
+
+
+		
+        .chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow:hidden ;
+    height:180px;
+}
+
+.panel-primary{
+	  border-color: #dddddd !important;
+}
+
+/*::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}*/
+@keyframes textAnim {
+  0% {font-size: 120px; fill: white;}
+  10% {font-size: 140px; fill: red;}
+  40% {font-size: 110px; fill: white;}
+  100% {font-size: 120px; fill: white;}
+}
+
+@-webkit-keyframes textAnim {
+  0% {font-size: 120px; fill: white;}
+  10% {font-size: 140px; fill: red;}
+  40% {font-size: 110px; fill: orange;}
+  100% {font-size: 120px; fill: white;}
+}
+
+text tspan{
+  font-family: Helvetica, Arial;
+  font-weight: 700;
+  animation: textAnim 2s ease infinite;
+  -webkit-animation: textAnim 2s ease infinite;
+  letter-spacing: 24px;
+}
+
+
+#l2 {
+  animation-delay: .1s;
+  -webkit-animation-delay: .1s;
+}
+#l3 {
+  animation-delay: .3s;
+  -webkit-animation-delay: .3s;
+}
+#l4 {
+  animation-delay: .5s;
+  -webkit-animation-delay: .5s;
+}
+.container{
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: ;
+	    overflow: hidden;
+}
+		
+		
+
+/* Style the button */
+button {
+  padding: 0px;
+  font-size: 10px;
+}
+
+@media (min-width:1200px){
+	 .panel-footer{
+	 	display: none;
+	 }
+}
+
+@media (max-width:1200px){
+	  .fish{
+	 	display: none;
+	 }
+}
+
+@media (max-width:1200px){
+	  .panel-heading{
+	 	display: none;
+	 }
+}
+    </style>
+		 <!-- Text Animation -->
+    <script type="text/javascript">
+    	var spans = document.querySelectorAll("tspan");
+        var i = 0;
+            for (i = 0; i < spans.length; i++) {
+        spans[i].setAttribute("rotate", (10 * Math.random() - 5));
+}
+    </script>
+</head>
+	
+<body>
+      <div class="container-fluid">
+	    <div class="row" style="" >
+         <div class="col-lg-8 " style="">
+           <div class="embed-responsive embed-responsive-16by9" >
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/9uy9BAWzdcs?autoplay=1&controls=1&loop=1&playlist=9uy9BAWzdcs&amp;showinfo=0" allowfullscreen  ></iframe>
+           </div>
+         </div>
+         <div class="col-lg-4"  style="background-color: #0000ff;margin-left:-15px">
+			
+           <svg viewBox="0 0 600 250">
+                 <text x="20" y="170" text-anchor="start">
+                     <tspan id="l1">태</tspan>
+                     <tspan id="l2">화</tspan>
+                     <tspan id="l3">상</tspan>
+                     <tspan id="l4">회</tspan>
+                </text>
+           </svg> 
+			
+            
+			 <div class="panel panel-primary">
+                <div class="panel-heading clearfix" style="background: #fff">
+					  <img class="img-fluid" src="{% static 'img/jumbologo.png' %}" style="float:left;" width="20%" height=""  alt="">
+<!--                    <span class="glyphicon glyphicon-comment"></span> -->
+                                    <p style="margin: 10px;
+   color: #000; font-size:24px;letter-spacing:0.1em;"> 멸치권현망수협중매인 4</p> 
+                </div> 
+                <div class="panel-body" margin:0;>
+            <!-- ul element holding chat messages --> 
+                    <ul class="chat" id="chat">
+                    </ul>
+                </div>
+                <div class="panel-footer">
+					
+                    <div class="input-group">
+        <!-- text imput fot the messages to be typed into -->
+                        <input id="btn-input" class="form-control input-sm" placeholder="Type your message here..." type="text">
+                        <span class="input-group-btn">
+        <!--- send button for the chat box -->
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                       </span>
+                    </div>
+					
+                </div>
+				
+				 <script>
+        /**
+ * Element.requestFullScreen() polyfill
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+if (!Element.prototype.requestFullscreen) {
+	Element.prototype.requestFullscreen = Element.prototype.mozRequestFullscreen || Element.prototype.webkitRequestFullscreen || Element.prototype.msRequestFullscreen;
+}
+
+/**
+ * document.exitFullScreen() polyfill
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+if (!document.exitFullscreen) {
+	document.exitFullscreen = document.mozExitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+}
+
+/**
+ * document.fullscreenElement polyfill
+ * Adapted from https://shaka-player-demo.appspot.com/docs/api/lib_polyfill_fullscreen.js.html
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+if (!document.fullscreenElement) {
+
+	Object.defineProperty(document, 'fullscreenElement', {
+		get: function() {
+			return document.mozFullScreenElement || document.msFullscreenElement || document.webkitFullscreenElement;
+		}
+	});
+
+	Object.defineProperty(document, 'fullscreenEnabled', {
+		get: function() {
+			return document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitFullscreenEnabled;
+		}
+	});
+}
+
+document.addEventListener('click', function (event) {
+
+	// Ignore clicks that weren't on the toggle button
+	if (!event.target.hasAttribute('data-toggle-fullscreen')) return;
+
+	// If there's an element in fullscreen, exit
+	// Otherwise, enter it
+	if (document.fullscreenElement) {
+		document.exitFullscreen();
+	} else {
+		document.documentElement.requestFullscreen();
+	}
+
+}, false);
+</script>
+
+            </div>
+            <div  style="margin-bottom: 5px;">
+             <button data-toggle-fullscreen>Toggle Fullscreen</button>	
+		    </div>	
+		    </div>
+        </div>
+        </div>
+	    
+	  <div class="container-fluid fish">
+	    <div class="row" style="overflow-y: hidden" >
+			  <div class="col-lg-12 " style="height:38vh">
+		<div id="jsi-flying-fish-container" class="container">
+		  <script>
+			var RENDERER = {
+	POINT_INTERVAL : 5,
+	FISH_COUNT : 2,
+	MAX_INTERVAL_COUNT : 50,
+	INIT_HEIGHT_RATE : 0.5,
+	THRESHOLD : 50,
+	
+	init : function(){
+		this.setParameters();
+		this.reconstructMethods();
+		this.setup();
+		this.bindEvent();
+		this.render();
+	},
+	setParameters : function(){
+		this.$window = $(window);
+		this.$container = $('#jsi-flying-fish-container');
+		this.$canvas = $('<canvas />');
+		this.context = this.$canvas.appendTo(this.$container).get(0).getContext('2d');
+		this.points = [];
+		this.fishes = [];
+		this.watchIds = [];
+	},
+	createSurfacePoints : function(){
+		var count = Math.round(this.width / this.POINT_INTERVAL);
+		this.pointInterval = this.width / (count - 1);
+		this.points.push(new SURFACE_POINT(this, 0));
+		
+		for(var i = 1; i < count; i++){
+			var point = new SURFACE_POINT(this, i * this.pointInterval),
+				previous = this.points[i - 1];
+				
+			point.setPreviousPoint(previous);
+			previous.setNextPoint(point);
+			this.points.push(point);
+		}
+	},
+	reconstructMethods : function(){
+		this.watchWindowSize = this.watchWindowSize.bind(this);
+		this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+		this.startEpicenter = this.startEpicenter.bind(this);
+		this.moveEpicenter = this.moveEpicenter.bind(this);
+		this.render = this.render.bind(this);
+	},
+	setup : function(){
+		this.points.length = 0;
+		this.fishes.length = 0;
+		this.watchIds.length = 0;
+		this.intervalCount = this.MAX_INTERVAL_COUNT;
+		this.width = this.$container.width();
+		this.height = this.$container.height();
+		this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+		this.$canvas.attr({width : this.width, height : this.height});
+		
+		this.skyGradient = this.context.createLinearGradient(0, 0, 0, this.height);
+		this.skyGradient.addColorStop(0, 'hsl(180, 80%, 70%)');
+		this.skyGradient.addColorStop(1, 'hsl(180, 80%, 90%)');
+		
+		this.seaGradient = this.context.createLinearGradient(0, 0, 0, this.height);
+		this.seaGradient.addColorStop(0, 'hsl(180, 80%, 60%)');
+		this.seaGradient.addColorStop(0.5, 'hsl(180, 80%, 50%)');
+		this.seaGradient.addColorStop(1, 'hsl(210, 80%, 50%)');
+		
+		this.fishes.push(new FISH(this));
+		this.createSurfacePoints();
+	},
+	watchWindowSize : function(){
+		this.clearTimer();
+		this.tmpWidth = this.$window.width();
+		this.tmpHeight = this.$window.height();
+		this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL));
+	},
+	clearTimer : function(){
+		while(this.watchIds.length > 0){
+			clearTimeout(this.watchIds.pop());
+		}
+	},
+	jdugeToStopResize : function(){
+		var width = this.$window.width(),
+			height = this.$window.height(),
+			stopped = (width == this.tmpWidth && height == this.tmpHeight);
+			
+		this.tmpWidth = width;
+		this.tmpHeight = height;
+		
+		if(stopped){
+			this.setup();
+		}
+	},
+	bindEvent : function(){
+		this.$window.on('resize', this.watchWindowSize);
+		this.$container.on('mouseenter', this.startEpicenter);
+		this.$container.on('mousemove', this.moveEpicenter);
+	},
+	getAxis : function(event){
+		var offset = this.$container.offset();
+		
+		return {
+			x : event.clientX - offset.left + this.$window.scrollLeft(),
+			y : event.clientY - offset.top + this.$window.scrollTop()
+		};
+	},
+	startEpicenter : function(event){
+		this.axis = this.getAxis(event);
+	},
+	moveEpicenter : function(event){
+		var axis = this.getAxis(event);
+		
+		if(!this.axis){
+			this.axis = axis;
+		}
+		this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y);
+		this.axis = axis;
+	},
+	generateEpicenter : function(x, y, velocity){
+		if(y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD){
+			return;
+		}
+		var index = Math.round(x / this.pointInterval);
+		
+		if(index < 0 || index >= this.points.length){
+			return;
+		}
+		this.points[index].interfere(y, velocity);
+	},
+	controlStatus : function(){
+		for(var i = 0, count = this.points.length; i < count; i++){
+			this.points[i].updateSelf();
+		}
+		for(var i = 0, count = this.points.length; i < count; i++){
+			this.points[i].updateNeighbors();
+		}
+		if(this.fishes.length < this.fishCount){
+			if(--this.intervalCount == 0){
+				this.intervalCount = this.MAX_INTERVAL_COUNT;
+				this.fishes.push(new FISH(this));
+			}
+		}
+	},
+	render : function(){
+		requestAnimationFrame(this.render);
+		this.controlStatus();
+		
+		this.context.fillStyle = this.skyGradient;
+		this.context.fillRect(0, 0, this.width, this.height);
+		this.context.fillStyle = this.seaGradient;
+		this.context.beginPath();
+		this.context.moveTo(0, this.height);
+		
+		for(var i = 0, count = this.points.length; i < count; i++){
+			this.points[i].render(this.context);
+		}
+		this.context.lineTo(this.width, this.height);
+		this.context.closePath();
+		this.context.fill();
+		
+		for(var i = 0, count = this.fishes.length; i < count; i++){
+			this.fishes[i].render(this.context);
+		}
+	}
+};
+var SURFACE_POINT = function(renderer, x){
+	this.renderer = renderer;
+	this.x = x;
+	this.init();
+};
+SURFACE_POINT.prototype = {
+	SPRING_CONSTANT : 0.03,
+	SPRING_FRICTION : 0.9,
+	WAVE_SPREAD : 0.3,
+	ACCELARATION_RATE : 0.01,
+	
+	init : function(){
+		this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE;
+		this.height = this.initHeight;
+		this.fy = 0;
+		this.force = {previous : 0, next : 0};
+	},
+	setPreviousPoint : function(previous){
+		this.previous = previous;
+	},
+	setNextPoint : function(next){
+		this.next = next;
+	},
+	interfere : function(y, velocity){
+		this.fy = this.renderer.height * this.ACCELARATION_RATE * ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity);
+	},
+	updateSelf : function(){
+		this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height);
+		this.fy *= this.SPRING_FRICTION;
+		this.height += this.fy;
+	},
+	updateNeighbors : function(){
+		if(this.previous){
+			this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height);
+		}
+		if(this.next){
+			this.force.next = this.WAVE_SPREAD * (this.height - this.next.height);
+		}
+	},
+	render : function(context){
+		if(this.previous){
+			this.previous.height += this.force.previous;
+			this.previous.fy += this.force.previous;
+		}
+		if(this.next){
+			this.next.height += this.force.next;
+			this.next.fy += this.force.next;
+		}
+		context.lineTo(this.x, this.renderer.height - this.height);
+	}
+};
+var FISH = function(renderer){
+	this.renderer = renderer;
+	this.init();
+};
+FISH.prototype = {
+	GRAVITY : 0.4,
+	
+	init : function(){
+		this.direction = Math.random() < 0.5;
+		this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD;
+		this.y = this.getRandomValue(this.renderer.height * 6 / 10, this.renderer.height * 9 / 10);
+		this.previousY = this.y;
+		this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1);
+		this.vy = this.getRandomValue(-5, -2);
+		this.ay = this.getRandomValue(-0.2, -0.05);
+		this.theta = 0;
+		this.phi = 0;
+		this.isOut = false;
+	},
+	getRandomValue : function(min, max){
+		return min + (max - min) * Math.random();
+	},
+	controlStatus : function(context){
+		this.previousY = this.y;
+		this.x += this.vx;
+		this.y += this.vy;
+		this.vy += this.ay;
+		
+		if(this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE){
+			this.vy += this.GRAVITY;
+			this.isOut = true;
+		}else{
+			if(this.isOut){
+				this.ay = this.getRandomValue(-0.2, -0.05);
+			}
+			this.isOut = false;
+		}
+		if(!this.isOut){
+			this.theta += Math.PI / 20;
+			this.theta %= Math.PI * 2;
+			this.phi += Math.PI / 30;
+			this.phi %= Math.PI * 2;
+		}
+		this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY);
+		
+		if(this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD){
+			this.init();
+		}
+	},
+	render : function(context){
+		context.save();
+		context.translate(this.x, this.y);
+		context.rotate(Math.PI + Math.atan2(this.vy, this.vx));
+		context.scale(1, this.direction ? 1 : -1);
+		
+		context.fillStyle = 'hsl(180, 30%, 80%)';
+		context.beginPath();
+		context.moveTo(-30, 0);
+		context.bezierCurveTo(-20, 15, 15, 10, 40, 0);
+		context.bezierCurveTo(15, -10, -20, -15, -30, 0);
+		context.fill();
+		
+		context.save();
+		context.translate(40, 0);
+		context.scale(0.9 + 0.2 * Math.sin(this.theta), 1);
+		context.fillStyle = 'hsl(180, 30%, 80%)';
+		context.beginPath();
+		context.moveTo(0, 0);
+		context.quadraticCurveTo(5, 10, 20, 8);
+		context.quadraticCurveTo(12, 5, 10, 0);
+		context.quadraticCurveTo(12, -5, 20, -8);
+		context.quadraticCurveTo(5, -10, 0, 0);
+		context.fill();
+		context.restore();
+		
+		context.save();
+		context.translate(-3, 0);
+		context.rotate(Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi));
+		context.fillStyle = 'hsl(220, 80%, 40%)';
+		context.beginPath();
+		context.moveTo(-5, 0);
+		context.bezierCurveTo(-10, -10, -10, -30, 0, -40);
+		context.bezierCurveTo(12, -25, 8, -10, 0, 0);
+		context.closePath();
+		context.fill();
+		context.restore();
+		
+		context.strokeStyle = 'hsl(220, 80%, 40%)';
+		context.beginPath();
+		context.arc(-15, -3, 5, 0, Math.PI * 2, false);
+		context.stroke();
+		
+		context.fillStyle = 'hsl(220, 80%, 40%)';
+		context.beginPath();
+		context.arc(-15, -3, 3, 0, Math.PI * 2, false);
+		context.fill();
+		context.restore();
+		
+		this.controlStatus(context);
+	}
+};
+$(function(){
+	RENDERER.init();
+});
+			</script>
+		  </div> 
+			</div>
+		  </div>
+	</div>
+
+		
+		
+
+  <script>
+    //initiate puhser with your application key
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('c90ed76284fa52b52a67', {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+    //subscribe to the channel you want to listen to
+    var my_channel = pusher.subscribe('a_channel');
+    //wait for an event to be triggered in that channel
+    my_channel.bind("an_event", function (data) {
+        // declare a variable new_message to hold the new chat messages
+        var new_message = `<li class="">
+                           
+                               
+               <p style="margin:5px;color:#0000ff;font-family:'Noto Serif KR', serif; font-size:32px;font-weight: 400;letter-spacing:0.1em;">
+                                   `+data.message+`
+                                </p>
+                          
+                              </li>`;
+     //append the new message to the ul holding the chat messages
+    $('#chat').append(new_message);
+    });
+    //wait until the DOM is fully ready
+    $(document).ready(function(){
+    //add event listener to the chat button click 
+        $("#btn-chat").click(function(){
+    //get the currently typed message
+             var message = $('#btn-input').val();
+
+            $.post({
+                url: '/ajax/chat/',
+                data: {
+                'message': message
+                },
+                success: function (data) {
+
+                    $('#btn-input').val('');
+                    }
+            });
+
+        })
+    })
+
+	  
+	  
+</script>
+  </body>
+  </html>
